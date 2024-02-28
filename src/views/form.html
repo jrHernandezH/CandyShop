@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dulces</title>
+        <!--Flaticon-->
+        <link rel="shortcut icon" href="../images/flaticon.png" type="image/x-icon">
+        <!--Link de css-->
+        <link rel="stylesheet" href="../styles/index.css">
+        <!-- Enlace al CDN de FontAwesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!--Enlace bocicons-->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <!--Libreria de jquery-->
+        <script src="../jslib/jquery.js"></script>
+    </head>
+<body>
+    <div class="container-login" id="login">
+        <i class='bx bxs-x-square close' id="exit-login"></i>
+        <div class="login-left">
+            <div class="container-form">
+                <h2>Login</h2>
+                <span>Enter your account details</span>
+                <form class="form" id="login-i">
+                    <div class="group-input">
+                        <input type="text" required id="email" autocomplete="off">
+		                <label class="c-label" for="email">
+			                <span class="text-label">Email</span>
+		                </label>
+                        <i class="bx bx-envelope"></i>
+                        <span id="result-email">Invalid Email</span>
+                    </div>
+                    <div class="group-input">
+                        <input type="password"  id="password" required>
+		                <label class="c-label" for="password">
+			                <span class="text-label">Password</span>
+		                </label>
+                        <i class='bx bxs-lock-alt'></i> 
+                    </div>
+                    <a href=""><span>Forgot your password?</span></a>
+                    <button class="btn-s" id="login-s">Login</button>
+                    <span id="detect">Please fill the form</span>
+                </form>
+                <div class="redirection">
+                    <p>Are not account?</p>
+                    <a href="">Enter</a>
+                </div>
+            </div>
+        </div>
+        <div class="login-rigth">
+            <div class="welcome">
+                <h2><span>Welcome to </span>student portal</h2>
+                <span>Login to access your acount</span>
+            </div>
+            <!--Imagen de lado derecho-->
+        </div>
+    </div>
+
+    <script src="../functions/ready.js"></script>
+    <script src="../controller/getDataLogin.js"></script>
+</body>
+</html>

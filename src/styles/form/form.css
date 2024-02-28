@@ -1,0 +1,325 @@
+.container-login{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.container-login .close{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    z-index: 2;
+    font-size: 2em;
+    color: #eee;
+}
+.container-login .close:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.container-login .login-left{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #1C1D21;
+}
+ .container-form{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.container-login .login-left .container-form h2{
+    color: #FFF;
+    font-family: 'Poppins';
+    font-size: 2.4em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 12px 0;
+}
+.container-login .login-left .container-form span{
+    color: rgba(255,255,255.7);
+    font-family: 'Poppins';
+    font-size: .8em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+    margin-bottom: 48px;
+}
+.container-login .login-left .container-form .form{
+    width: 343px;
+    height: 346px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+.container-login .login-left .container-form .form .group-input{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    color: #EEE;
+}
+#result-email{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 120%;
+    right: 10%;
+    color: #925FE2;
+    border: 1px solid #9c6FE4;
+    padding: 2px 20px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+}
+#detect{
+    opacity: 0;
+    text-align: center;
+    color: #925FE2;
+    border: 1px solid #9c6FE4;
+    padding: 12px 10px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.container-login .login-left .container-form .form .group-input input{
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: #fff;
+    padding: 2px 0 0 2px;
+    border: none;
+    border-bottom:1px solid #FFF;
+    outline: none;
+}
+.container-form .login-left .container-form .form .group-input .c-label{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid #c7c7c7;
+}
+.container-form .login-left .container-form .form .group-input .c-label::after{
+    content: '';
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: 100%;
+		border-bottom: 3px solid #2ecece;
+		transform: translateX(-100%);
+		transition: all 0.3s ease;
+}
+.text-label{
+    position: absolute;
+    bottom: 5px;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+.container-login .login-left .container-form .form .group-input input:valid + .c-label .text-label,
+.container-login .login-left .container-form .form .group-input input:focus + .c-label .text-label {
+    transform: translateY(-22px);
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.container-login .login-left .container-form .form a{
+    text-decoration: none;
+    color: rgba(255,255,255.7);
+    font-family: 'Poppins';
+    font-size: .8em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+}
+.container-login .login-left .container-form .form .btn-s{
+    width: 100%;
+    height: auto;
+    padding: 12px 0;
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    background: #9c6FE4;
+
+    transition: all ease 0.3s;
+    /*font button*/
+    color: #FFF;
+    font-family: 'Poppins';
+    font-size: .9em;
+    font-weight: 500;
+    line-height: normal;
+}
+.container-login .login-left .container-form .form .btn-s:hover{
+    cursor: pointer;
+    background:#925FE2;
+}
+.container-login .login-left .container-form .redirection{
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 67px;
+}
+.container-login .login-left .container-form .redirection p{
+    color: rgba(255,255,255.5);
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: .8em;
+}
+.container-login .login-left .container-form .redirection a{
+    text-decoration: none;
+    display: block;
+    width: auto;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: #333437;
+    color: #FFF;
+    font-family: 'Poppins';
+    font-size: .9em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.container-login .login-rigth{
+    width: 55%;
+    height: 100%;
+    background: #925FE2;
+    position: relative;
+    overflow: hidden;
+}
+.container-login .login-rigth .welcome{
+    width: 550px;
+    height: auto;
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    color: #EEE;
+    font-family: 'Poppins';
+}
+.container-login .login-rigth .welcome h2{
+    margin: 0;
+    margin-bottom: 12px;
+    font-size: 4em;
+    line-height: 70px;
+    font-weight: 500;
+}
+.container-login .login-rigth .welcome h2 span{
+    font-weight: 700;
+}
+.container-form .login-rigth .welcome span{
+    font-size: .8em;
+    padding: 24px 16px;
+    font-weight: 500;
+}
+.container-login .login-rigth img{
+    width: 800px;
+    height: 520px;
+    object-fit: contain;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+}
+
+@media (width >= 768px) and (width <= 991px){
+    .container-login{
+        flex-direction: column-reverse;
+        height: 100vh;
+    }
+    .container-login .login-left , .container-login .login-rigth{
+        width: 100%;
+    }
+    .container-login .login-rigth{
+        height: 20vh;
+    }
+    .container-login .login-rigth .welcome h2{
+        font-size: 2em;
+        margin: 0;
+    }
+    .container-login .login-rigth img{
+        position: absolute;
+        width: 200px;
+        height: 120px;
+        bottom: 4%;
+        left: 80%;
+        transform: translateX(-50%);
+    }
+
+    .container-login .log
+    .container-login .login-left{
+        height: 80vh;
+    }
+}
+@media (width < 768px){
+    .container-login{
+        width: 100%;
+        height: 100vh;
+        flex-direction: column-reverse;
+    }
+    .container-login .login-left , .container-login .login-rigth{
+        width: 100%;
+    }
+    .container-login .login-rigth{
+        height: 20vh;
+    }
+    .container-login .login-rigth .welcome{
+        width: 220px;
+        height: auto;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #EEE;
+        font-family: 'Poppins';
+    }
+    .container-login .login-rigth .welcome h2{
+        width: auto;
+        height: auto;
+        font-size: 1.2em;
+        line-height: normal;
+        text-wrap: balance;
+    }
+    .container-login .login-rigth .welcome > span{
+        font-size: .8em;
+    }
+    .container-login .login-rigth img{
+        position: absolute;
+        width: 120px;
+        height: 80px;
+
+        bottom: 20%;
+        left: 75%;
+        transform: translateX(-50%);
+    }
+
+    .container-login .log
+    .container-login .login-left{
+        height: 80vh;
+    }
+    .container-login .close{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 2;
+        font-size: 2em;
+        color: #eee;
+    }
+    .container-login .login-left .container-form .form{
+        width: 100%;
+        height: 346px;
+        display: flex;
+        flex-direction: column;
+        gap: 34px;
+    }
+}

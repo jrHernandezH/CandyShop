@@ -1,6 +1,6 @@
 /*importacion de landy*/
 @import url(./landyn/landyn.css);
-
+@import url(./form/form.css);
 *{
     box-sizing: border-box;
     text-decoration: none;
