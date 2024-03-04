@@ -10,10 +10,8 @@ $('#login-s').click(function (e) {
         email,
         password
     }
+    
 
-    if(!email){
-        
-    }
 });
 
 
