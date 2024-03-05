@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-include_once('../modelo/Conexion.php');
+include_once('../modelo/AccesoDatos.php');
 include_once('../modelo/Personas.php');
 class Cliente extends Personas {
 
@@ -53,7 +53,7 @@ class Cliente extends Personas {
             WHERE personas.Contraseña = '$this->Contrasenia' and personas.Cuenta = '$this->Cuenta'
             and personas.Activa = '1'";
 
-            $conexion = new ConexionDB();
+            $conexion = new AccesoDatos();
             $result = $conexion->ejecutarSelect($query);
             if ($result != null) {
                 $this->Cuenta = $result[0][0];

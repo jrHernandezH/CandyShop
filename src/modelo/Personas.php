@@ -1,6 +1,6 @@
 <?php 
 error_reporting(E_ALL);
-include_once('../modelo/Conexion.php');
+include_once('../modelo/AccesoDatos.php');
 class Personas {
     protected ?string $Cuenta;
     protected ?string $Contrasenia;
