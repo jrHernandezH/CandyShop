@@ -1,6 +1,10 @@
 <?php
 error_reporting(E_ALL);
+<<<<<<< HEAD
 include_once("AccesoDatos.php");
+=======
+include_once('../modelo/AccesoDatos.php');
+>>>>>>> cf85f7789abe57a790a7ecae796f115172fe559a
 include_once('../modelo/Personas.php');
 class Administrador extends Personas {
    
