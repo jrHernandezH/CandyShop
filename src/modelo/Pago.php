@@ -1,6 +1,7 @@
 <?php 
 error_reporting(E_ALL);
-include_once('../modelo/Conexion.php');
+include_once("AccesoDatos.php");
+
 class Pago {
     protected ?int $Notarjeta;
     protected ?string $FechaVencimiento;

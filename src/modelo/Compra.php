@@ -1,12 +1,14 @@
 <?php 
 error_reporting(E_ALL);
-include_once('../modelo/Conexion.php');
+include_once("AccesoDatos.php");
 class Compra {
     protected ?int $idCompra;
     protected ?string $fechaEntrega;
     protected ?Mensajeria $mensajeria;
     protected ?Pago $pago;
 
+
+    //FALTA HACER AMBOS METODOS DE BUSQUEDA
 
 	public function buscarTodos():array{
         $oAccesoDatos=new AccesoDatos();

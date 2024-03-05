@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(E_ALL);
-
+include_once("AccesoDatos.php");
 class Origen{
 private int $idOrigen=0;
 private ?string $nombre;

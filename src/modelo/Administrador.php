@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-include_once('../modelo/Conexion.php');
+include_once("AccesoDatos.php");
 include_once('../modelo/Personas.php');
 class Administrador extends Personas {
    
@@ -48,7 +48,7 @@ public function existeCuentaAdministrador()
         WHERE personas.Contraseña = '$this->Contrasenia' and personas.Cuenta = '$this->Cuenta'
         and personas.Activa = 1";
 
-        $conexion = new ConexionDB();
+        $conexion = new AccesoDatos();
         $result = $conexion->ejecutarSelect($query);
   
         if ($result != null) {

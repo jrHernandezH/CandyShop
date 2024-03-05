@@ -1,6 +1,6 @@
 <?php 
 error_reporting(E_ALL);
-include_once('../modelo/Conexion.php');
+include_once("AccesoDatos.php");
 class Mensajeria {
     protected ?int $idMensajeria;
     protected ?string $Nombre;
