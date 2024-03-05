@@ -1,0 +1,3 @@
+Aqui crearan la conexiona a la base de datos 
+
+db _ new PDO 
