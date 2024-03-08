@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 include_once("AccesoDatos.php");
 class Origen{
 private int $idOrigen=0;
-private ?string $nombre;
+private ?string $nombre = " ";
 	
 	public function buscarTodos():array{
 	$oAccesoDatos=new AccesoDatos();
@@ -13,10 +13,10 @@ private ?string $nombre;
 	$arrRet = null;
 	$oOrigen=null;
 		if ($oAccesoDatos->openConnection()){
-			$sQuery = "SELECT Llave_Origen, Nombre
-				FROM Origen
-				ORDER BY Nombre";
-			$arrRS = $oAccesoDatos->ejecutarComando($sQuery, array());
+			$sQuery = "SELECT t1.Llave_Origen, t1.Nombre
+				FROM Origen t1
+				ORDER BY t1.Nombre";
+			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, array());
 			$oAccesoDatos->closeConnection();
 			if ($arrRS){
 				$arrRet = array();

@@ -4,6 +4,7 @@ Objetivo: control para buscar todas las experiencias por filtro, no requiere ses
 Autor:    BAOZ
 */
 require_once("../modelo/Producto.php");
+require_once("../modelo/Origen.php");
 include_once("../utils/ErroresAplic.php");
 $nErr=-1;
 $oPro=new Producto();
@@ -12,24 +13,27 @@ $sJsonRet = "";
 $oErr = null;
 $nFiltro=-1;
 	/*Verifica que haya llegado el filtro de reconocimiento*/
-	if (isset($_REQUEST["cmbTipo"]) && !empty($_REQUEST["cmbTipo"])){
+	if (isset($_REQUEST["cmbOrigen"]) && !empty($_REQUEST["cmbOrigen"])){
 		//Verifica que sea entero
-		if (is_numeric($_REQUEST["cmbTipo"])){
+		if (is_numeric($_REQUEST["cmbOrigen"])){
 			try{				
-				$nFiltro = (int)$_REQUEST["cmbTipo"];
+				$nFiltro = (int)$_REQUEST["cmbOrigen"];
 				//Si el tipo es -1, está buscando todos, sin filtro
 				if ($nFiltro == -1){
 					$arrEncontrados = $oPro->buscarTodos();
 				}else{
 					//Verificar que el valor sea válido en el enumerado
-					if (array_search($nFiltro, 
-									array_column(tipo::cases(),"value"))
-						!==false){
-						$oPro->setTipo(Tipo::from($nFiltro));
+					//if (array_search($nFiltro, 
+						//			array_column(tipo::cases(),"value"))
+					//	!==false){
+                     $origen = new Origen();
+                     $origen->setIdOrigen( $nFiltro);
+                        
+						$oPro->setOrigen($origen);
 						//$arrEncontrados = array_merge($oPro->buscarTodosPorTipo());
-						$arrEncontrados = $oPro->buscarTodosPorTipo();
-					}else
-						$nErr = ErroresAplic::ERROR_DATOS;
+						$arrEncontrados = $oPro->buscarTodosPorOrigen();
+					//}else
+					//	$nErr = ErroresAplic::ERROR_DATOS;
 				}				
 			}catch(Exception $e){
 				//Enviar el error específico a la bitácora de php (dentro de php\logs\php_error_log

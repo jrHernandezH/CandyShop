@@ -13,7 +13,7 @@ $().ready(()=>{
             cargaOrigenes();
         },
         change: function(event, ui){
-            //buscaDatosCatalogo();
+            buscaProductosOrigen();
         }
     });
 });
@@ -62,6 +62,7 @@ var sUrl = "src/controller/ctrlBuscaTipos.php";
 }
     
 function buscaProductosTipo(){
+   
 let sErr = '';
     if ($('#cmbTipo') === null)
         sErr = 'Error de referencias';
@@ -85,7 +86,7 @@ let sErr = '';
                             oDatos.data.arrProductos.forEach((elem)=>{
                                 tr = $('<tr>');
                                 tdNombre = $('<td>');
-                                tdTipo = $('<td>');
+                            
                                 tdOrigen = $('<td>');
                                 tdPrecio = $('<td>');
                                 tdCarac = $('<td>');
@@ -93,7 +94,6 @@ let sErr = '';
                                 tdImg = $('<td>');
                                 tdExis = $('<td>');
                                 tdNombre.text(elem.nombre);
-                                tdTipo.text(elem.tipo);
                                 tdOrigen.text(elem.origen);
                                 tdPrecio.text(elem.precio);
                                 tdCarac.text(elem.caracteristicas);
@@ -102,7 +102,7 @@ let sErr = '';
 
                                 //Faltará hacer que se cargue la img con base al nombre
                                 tdImg.text(elem.fotografia);
-                                tr.append(tdNombre, tdTipo, tdOrigen, tdPrecio, tdCarac,tdImg,tdSabor,tdExis);
+                                tr.append(tdNombre, tdOrigen, tdPrecio, tdCarac,tdImg,tdSabor,tdExis);
                                 $('#tblDatos').append(tr);
                             
                         });
@@ -130,6 +130,75 @@ let sErr = '';
     if (sErr !== '')
         alert(sErr);
 }
+function buscaProductosOrigen(){
+   
+    let sErr = '';
+        if ($('#cmbOrigen') === null)
+            sErr = 'Error de referencias';
+        else{
+            if ($('#cmbOrigen').val() === ''){
+                $('#tblDatos').empty();
+            }else{
+                $.getJSON({
+                    url: 'src/controller/ctrlBuscarProductosOrigen.php?cmbOrigen='
+                        +$('#cmbOrigen').val()
+                })
+                .done(function(oDatos, status, objResp){
+                    let sErr='';
+                    let tr, tdNombre, tdOrigen, tdPrecio, tdCarac, tdSabor, tdImg, tdExis;
+                    try{
+                        //Limpiar información anterior
+                        $('#tblDatos').empty();
+                        if (oDatos.success){
+                            console.log(oDatos);
+                            if(oDatos.data.arrProductos.length>0){//POR alguna razon no obtiene ningun dato de la BDD
+                                oDatos.data.arrProductos.forEach((elem)=>{
+                                    tr = $('<tr>');
+                                    tdNombre = $('<td>');
+                                
+                                    tdOrigen = $('<td>');
+                                    tdPrecio = $('<td>');
+                                    tdCarac = $('<td>');
+                                    tdSabor = $('<td>');
+                                    tdImg = $('<td>');
+                                    tdExis = $('<td>');
+                                    tdNombre.text(elem.nombre);
+                                    tdOrigen.text(elem.origen);
+                                    tdPrecio.text(elem.precio);
+                                    tdCarac.text(elem.caracteristicas);
+                                    tdSabor.text(elem.saborizantes);
+                                    tdExis.text(elem.otros);
+    
+                                    //Faltará hacer que se cargue la img con base al nombre
+                                    tdImg.text(elem.fotografia);
+                                    tr.append(tdNombre, tdOrigen, tdPrecio, tdCarac,tdImg,tdSabor,tdExis);
+                                    $('#tblDatos').append(tr);
+                                
+                            });
+                            }else
+                                alert("No se encontraron datos!");
+                            
+                        }else{
+                            sErr = oDatos.status;
+                        }
+                    }catch(excep){
+                        sErr = excep.message;
+                    }
+                    if (sErr != '')
+                        alert(sErr);
+                })
+                .fail(function(objResp, status, sError){
+                    alert('El servidor indica error '+status+ ' usando $.getJSON()');
+                    console.log(sError);
+                })
+                .always(function(objResp, status){
+                        console.log("Llamada $.getJSON() a API Web completada "+status);
+                });
+            }
+        }
+        if (sErr !== '')
+            alert(sErr);
+    }
 /*
 function llenaTablaSprites(oDatos){
 let sErr='';

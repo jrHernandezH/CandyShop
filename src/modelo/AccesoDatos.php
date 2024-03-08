@@ -8,17 +8,22 @@ class AccesoDatos
     private $conn = null;
 
     // Método para abrir la conexión con la base de datos
-    public function openConnection()
+ function openConnection()
     {
+        $bRet = false;
         try {
             $this->conn = new PDO("mysql:host=localhost;dbname=dulceria", "Dulces", "20242026",  array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"));
+       
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $bRet = true;
         } catch (Exception $e) {
             throw $e;
         }
+        return $bRet;
     }
 
     // Método para cerrar la conexión con la base de datos
-    public function closeConnection()
+     function closeConnection()
     {
         try {
             if ($this->conn != null) {
@@ -30,7 +35,7 @@ class AccesoDatos
     }
 
     // Método para ejecutar INSERT, UPDATE, DELETE
-    public function ejecutarComando($query)
+     function ejecutarComando($query)
     {
         try {
             $this->openConnection();
