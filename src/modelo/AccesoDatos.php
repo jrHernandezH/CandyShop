@@ -56,6 +56,31 @@ class AccesoDatos
         }
     }
 
+    function ejecutarConsulta($psConsulta, $parrParams){
+		$arrRS = null;
+		$rst = null;
+		$oLinea = null;
+		$sValCol = "";
+		$i=0;
+		$j=0;
+			if ($psConsulta == ""){
+		       throw new Exception("AccesoDatos->ejecutarConsulta: falta indicar la consulta");
+			}
+			if ($this->conn == null){
+				throw new Exception("AccesoDatos->ejecutarConsulta: falta conectar la base");
+			}
+			try{
+				$rst = $this->conn->prepare($psConsulta);
+				$rst->execute($parrParams); 
+			}catch(Exception $e){
+				throw $e;
+			}
+			if ($rst){
+				$arrRS = $rst->fetchAll();
+			}
+			return $arrRS;
+		}
+
     // Método para ejecutar SELECT
     public function ejecutarSelect($query)
     {

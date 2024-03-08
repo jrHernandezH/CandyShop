@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="./src/jslib/jquery-ui-custom/jquery-ui.css">
+	<script src="./src/jslib/jquery.js"></script>
+	<script src="./src/jslib/jquery-ui-custom/jquery-ui.js"></script>
+    <script src="./src/functions/controlBusqueda.js"></script>
+
+</head>
+<body>
+    <form>
+        <label for="cmbTipo">Tipo de dulce:</label>
+        <select id="cmbTipo" required>
+        </select>
+        <br/>
+        <label for="cmbOrigen">Origen:</label>
+        <select id="cmbOrigen" required>
+        </select>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <td>Nombre</td>
+                <td>Tipo</td>
+                <td>Origen</td>
+                <td>Precio</td>
+                <td>Caracter&iacute;sticas</td>
+                <td>Imagen</td>
+                <td>Saborizantes</td>
+                <td>Existencias</td>
+            </tr>
+        </thead>
+        <tbody id="tblDatos">
+        </tbody>
+    </table>
+</body>
+</html>

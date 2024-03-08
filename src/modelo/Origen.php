@@ -12,12 +12,12 @@ private ?string $nombre;
 	$arrRS=null;
 	$arrRet = null;
 	$oOrigen=null;
-		if ($oAccesoDatos->conectar()){
-			$sQuery = "SELECT t1.idOrigen, t1.nombre
-				FROM Origen t1
-				ORDER BY t1.nombre";
-			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, array());
-			$oAccesoDatos->desconectar();
+		if ($oAccesoDatos->openConnection()){
+			$sQuery = "SELECT Llave_Origen, Nombre
+				FROM Origen
+				ORDER BY Nombre";
+			$arrRS = $oAccesoDatos->ejecutarComando($sQuery, array());
+			$oAccesoDatos->closeConnection();
 			if ($arrRS){
 				$arrRet = array();
 				foreach($arrRS as $arrLinea){
@@ -30,6 +30,24 @@ private ?string $nombre;
 		}
 		return $arrRet;
 	}
+		public function buscarPorId(): ?string {
+			$oAccesoDatos = new AccesoDatos();
+			$sQuery = "";
+			$arrRS = null;
+			$nombre = null;
+			
+			if ($oAccesoDatos->openConnection()) {
+				$sQuery = "SELECT Nombre FROM Origen WHERE Llave_Origen = ?";
+				$arrRS = $oAccesoDatos->ejecutarComando($sQuery, array($this->getIdOrigen()));
+				$oAccesoDatos->closeConnection();
+		
+				if ($arrRS && count($arrRS) > 0) {
+					$nombre = $arrRS[0][0];
+				}
+			}
+		
+			return $nombre;
+		}
 	
     public function setIdOrigen(int $valor){
        $this->idOrigen = $valor;
