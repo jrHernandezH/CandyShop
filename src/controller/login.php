@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 
 <?php
 
@@ -83,8 +79,4 @@ $nErr = ErroresAplic::FALTAN_DATOS;
 
 
 
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c

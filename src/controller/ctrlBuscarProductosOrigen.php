@@ -1,8 +1,5 @@
 <?php
-/*Archivo:  ctrlBuscaTodosFiltroProeriencias.php
-Objetivo: control para buscar todas las experiencias por filtro, no requiere sesión
-Autor:    BAOZ
-*/
+
 require_once("../modelo/Producto.php");
 require_once("../modelo/Origen.php");
 include_once("../utils/ErroresAplic.php");
@@ -22,22 +19,14 @@ $nFiltro=-1;
 				if ($nFiltro == -1){
 					$arrEncontrados = $oPro->buscarTodos();
 				}else{
-					//Verificar que el valor sea válido en el enumerado
-					//if (array_search($nFiltro, 
-						//			array_column(tipo::cases(),"value"))
-					//	!==false){
+
                      $origen = new Origen();
-<<<<<<< HEAD
                      $origen->setIdOrigen($nFiltro);
-=======
-                     $origen->setIdOrigen( $nFiltro);
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
                         
 						$oPro->setOrigen($origen);
-						//$arrEncontrados = array_merge($oPro->buscarTodosPorTipo());
+						
 						$arrEncontrados = $oPro->buscarTodosPorOrigen();
-					//}else
-					//	$nErr = ErroresAplic::ERROR_DATOS;
+				
 				}				
 			}catch(Exception $e){
 				//Enviar el error específico a la bitácora de php (dentro de php\logs\php_error_log
@@ -60,7 +49,6 @@ $nFiltro=-1;
 		';
 		//Recorrer arreglo para llenar objetos
 		foreach($arrEncontrados as $oPro){
-<<<<<<< HEAD
 
 			$sJsonRet = $sJsonRet.'{
 				"nombre":"'.$oPro->getNombre().'",
@@ -72,18 +60,6 @@ $nFiltro=-1;
 				"existencias":'.$oPro->getExistencia().',
 				"origen":"'.$oPro->getOrigen()->getNombre().'"
 				},';
-=======
-			$Origen = $oPro->getOrigen();
-			
-			$sJsonRet = $sJsonRet.'{
-					"nombre":"'.$oPro->getNombre().'",
-					"precio":'.$oPro->getPrecio().',
-					"caracteristicas":"'.$oPro->getCaracteristicas().'",
-					"fotografia":"'.$oPro->getFotografia().'",
-					"saborizantes":'.$oPro->getSaborizante().',
-					"origen":"'.$Origen->getNombre().'"
-					},';
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 		}
 		//Sobra una coma, eliminarla
 		$sJsonRet = substr($sJsonRet,0, strlen($sJsonRet)-1);

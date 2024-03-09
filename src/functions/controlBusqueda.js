@@ -87,11 +87,7 @@ let sErr = '';
                             oDatos.data.arrProductos.forEach((elem)=>{
                                 tr = $('<tr>');
                                 tdNombre = $('<td>');
-<<<<<<< HEAD
                                 tdTipo= $('<td>');
-=======
-                            
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
                                 tdOrigen = $('<td>');
                                 tdPrecio = $('<td>');
                                 tdCarac = $('<td>');
@@ -103,19 +99,10 @@ let sErr = '';
                                 tdOrigen.text(elem.origen);
                                 tdPrecio.text("$"+elem.precio);
                                 tdCarac.text(elem.caracteristicas);
-<<<<<<< HEAD
                                 tdSabor.text(convertirABool(elem.saborizantes));
                                 tdExis.text(convertirABool(elem.existencias));
                                 tdImg.append(imgPro);
                                 tr.append(tdNombre,tdTipo, tdOrigen, tdPrecio, tdCarac,tdImg,tdSabor,tdExis);
-=======
-                                tdSabor.text(elem.saborizantes);
-                                tdExis.text(elem.otros);
-
-                                //Faltará hacer que se cargue la img con base al nombre
-                                tdImg.text(elem.fotografia);
-                                tr.append(tdNombre, tdOrigen, tdPrecio, tdCarac,tdImg,tdSabor,tdExis);
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
                                 $('#tblDatos').append(tr);
                             
                         });
@@ -158,11 +145,7 @@ function buscaProductosOrigen(){
                 })
                 .done(function(oDatos, status, objResp){
                     let sErr='';
-<<<<<<< HEAD
                     let tr, tdNombre, tdOrigen, tdPrecio, tdCarac, tdSabor, tdImg, tdExis,imgPro;
-=======
-                    let tr, tdNombre, tdOrigen, tdPrecio, tdCarac, tdSabor, tdImg, tdExis;
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
                     try{
                         //Limpiar información anterior
                         $('#tblDatos').empty();
@@ -172,16 +155,11 @@ function buscaProductosOrigen(){
                                 oDatos.data.arrProductos.forEach((elem)=>{
                                     tr = $('<tr>');
                                     tdNombre = $('<td>');
-<<<<<<< HEAD
                                     tdTipo= $('<td>');
-=======
-                                
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
                                     tdOrigen = $('<td>');
                                     tdPrecio = $('<td>');
                                     tdCarac = $('<td>');
                                     tdSabor = $('<td>');
-<<<<<<< HEAD
                                     tdImg = $('<td>').css('width', '150px');
                                     tdExis = $('<td>');
                                     imgPro = $('<img>').prop('src', "../../src/images/products/"+elem.fotografia).prop('alt', 'Default Sprite').css('max-width', '100%');
@@ -194,20 +172,6 @@ function buscaProductosOrigen(){
                                     tdExis.text(convertirABool(elem.existencias));
                                     tdImg.append(imgPro);
                                     tr.append(tdNombre,tdTipo, tdOrigen, tdPrecio, tdCarac,tdImg,tdSabor,tdExis);
-=======
-                                    tdImg = $('<td>');
-                                    tdExis = $('<td>');
-                                    tdNombre.text(elem.nombre);
-                                    tdOrigen.text(elem.origen);
-                                    tdPrecio.text(elem.precio);
-                                    tdCarac.text(elem.caracteristicas);
-                                    tdSabor.text(elem.saborizantes);
-                                    tdExis.text(elem.otros);
-    
-                                    //Faltará hacer que se cargue la img con base al nombre
-                                    tdImg.text(elem.fotografia);
-                                    tr.append(tdNombre, tdOrigen, tdPrecio, tdCarac,tdImg,tdSabor,tdExis);
->>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
                                     $('#tblDatos').append(tr);
                                 
                             });
