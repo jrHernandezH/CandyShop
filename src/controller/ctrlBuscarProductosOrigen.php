@@ -27,7 +27,11 @@ $nFiltro=-1;
 						//			array_column(tipo::cases(),"value"))
 					//	!==false){
                      $origen = new Origen();
+<<<<<<< HEAD
                      $origen->setIdOrigen($nFiltro);
+=======
+                     $origen->setIdOrigen( $nFiltro);
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
                         
 						$oPro->setOrigen($origen);
 						//$arrEncontrados = array_merge($oPro->buscarTodosPorTipo());
@@ -56,6 +60,7 @@ $nFiltro=-1;
 		';
 		//Recorrer arreglo para llenar objetos
 		foreach($arrEncontrados as $oPro){
+<<<<<<< HEAD
 
 			$sJsonRet = $sJsonRet.'{
 				"nombre":"'.$oPro->getNombre().'",
@@ -67,6 +72,18 @@ $nFiltro=-1;
 				"existencias":'.$oPro->getExistencia().',
 				"origen":"'.$oPro->getOrigen()->getNombre().'"
 				},';
+=======
+			$Origen = $oPro->getOrigen();
+			
+			$sJsonRet = $sJsonRet.'{
+					"nombre":"'.$oPro->getNombre().'",
+					"precio":'.$oPro->getPrecio().',
+					"caracteristicas":"'.$oPro->getCaracteristicas().'",
+					"fotografia":"'.$oPro->getFotografia().'",
+					"saborizantes":'.$oPro->getSaborizante().',
+					"origen":"'.$Origen->getNombre().'"
+					},';
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 		}
 		//Sobra una coma, eliminarla
 		$sJsonRet = substr($sJsonRet,0, strlen($sJsonRet)-1);

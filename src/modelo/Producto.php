@@ -12,7 +12,10 @@ class Producto{
     protected ?string $Caracteristicas;
     protected ?string $Fotografia;
     protected int $Saborizantes;
+<<<<<<< HEAD
 	protected int $Existencias;
+=======
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
     protected ?Tipo $tipo;
     protected ?Origen $origen;
 
@@ -25,7 +28,11 @@ class Producto{
 		$oProducto=null;
 			if ($oAccesoDatos->openConnection()){
 				$sQuery = "SELECT t1.Llave_Producto, t1.Nombre, t1.Precio, 
+<<<<<<< HEAD
 								t1.Caracteristicas, t1.Fotografia, t1.Saborizante, t1.Existencia ,
+=======
+								t1.Caracteristicas, t1.Fotografia, t1.Saborizante, 
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 								t1.Tipo, t1.Llave_Origen
 					FROM productos t1
 					ORDER BY t1.Llave_Producto";
@@ -63,7 +70,11 @@ class Producto{
 		else{
 			if ($oAccesoDatos->openConnection()){
 				$sQuery = "SELECT t1.Llave_Producto, t1.Nombre, t1.Precio, 
+<<<<<<< HEAD
 								t1.Caracteristicas, t1.Fotografia, t1.Saborizante,  t1.Existencia ,
+=======
+								t1.Caracteristicas, t1.Fotografia, t1.Saborizante, 
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 								t1.Tipo, t1.Llave_Origen
 					FROM productos t1
 					WHERE t1.Tipo = :tip
@@ -103,7 +114,11 @@ class Producto{
 			else{
 				if ($oAccesoDatos->openConnection()){
 					$sQuery = "SELECT t1.Llave_Producto, t1.Nombre, t1.Precio, 
+<<<<<<< HEAD
 									t1.Caracteristicas, t1.Fotografia, t1.Saborizante,  t1.Existencia ,
+=======
+									t1.Caracteristicas, t1.Fotografia, t1.Saborizante, 
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 									t1.Tipo, t1.Llave_Origen
 						FROM productos t1
 						WHERE t1.Llave_Origen = :ori
@@ -120,10 +135,16 @@ class Producto{
 							$oProducto->setCaracteristicas($arrLinea[3]);
 							$oProducto->setFotografia($arrLinea[4]);
 							$oProducto->setSaborizante($arrLinea[5]);
+<<<<<<< HEAD
 							$oProducto->setExistencia($arrLinea[6]);
 							$oProducto->setTipo(Tipo::from($arrLinea[7]));
 							$oProducto->setOrigen(new Origen());
 							$oProducto->getOrigen()->setIdOrigen($arrLinea[8]);
+=======
+							$oProducto->setTipo(Tipo::from($arrLinea[6]));
+							$oProducto->setOrigen(new Origen());
+							$oProducto->getOrigen()->setIdOrigen($arrLinea[7]);
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 							$arrRet[] = $oProducto;
 						}
 					}

@@ -52,17 +52,28 @@ $nFiltro=-1;
 		';
 		//Recorrer arreglo para llenar objetos
 		foreach($arrEncontrados as $oPro){
+<<<<<<< HEAD
 		
 			
 			$sJsonRet = $sJsonRet.'{
 					"nombre":"'.$oPro->getNombre().'",
 					"tipo":"'.str_replace('_', ' ', $oPro->getTipo()->name).'",
+=======
+			$Origen = $oPro->getOrigen();
+			
+			$sJsonRet = $sJsonRet.'{
+					"nombre":"'.$oPro->getNombre().'",
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 					"precio":'.$oPro->getPrecio().',
 					"caracteristicas":"'.$oPro->getCaracteristicas().'",
 					"fotografia":"'.$oPro->getFotografia().'",
 					"saborizantes":'.$oPro->getSaborizante().',
+<<<<<<< HEAD
 					"existencias":'.$oPro->getExistencia().',
 					"origen":"'.$oPro->getOrigen()->getNombre().'"
+=======
+					"origen":"'.$Origen->getNombre().'"
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 					},';
 		}	
 		//Sobra una coma, eliminarla

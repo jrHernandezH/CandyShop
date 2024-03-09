@@ -4,7 +4,11 @@ error_reporting(E_ALL);
 include_once("AccesoDatos.php");
 class Origen{
 private int $idOrigen=0;
+<<<<<<< HEAD
 private ?string $nombre = " s";
+=======
+private ?string $nombre = " ";
+>>>>>>> 1f6ea2c1c29b5f99d7349adec3f872752f630f5c
 	
 	public function buscarTodos():array{
 	$oAccesoDatos=new AccesoDatos();
