@@ -27,7 +27,7 @@ $oOri=null;
 				"arrOrigenes": [
 		';
 		//Recorrer arreglo para llenar objetos
-		/*foreach($arrEncontrados as $oOrigen){
+		foreach($arrEncontrados as $oOrigen){
 			$sJsonRet = $sJsonRet.'{
 					"clave":'.$oOrigen->getIdOrigen().',
 					"descripcion":"'.$oOrigen->getNombre().'"
@@ -35,7 +35,7 @@ $oOri=null;
 		}
 		//Sobra una coma, eliminarla
 		$sJsonRet = substr($sJsonRet,0, strlen($sJsonRet)-1);
-		*/
+		
 		//Colocar cierre de arreglo y de objeto
 		$sJsonRet = $sJsonRet.'
 				]

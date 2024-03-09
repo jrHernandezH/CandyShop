@@ -28,7 +28,8 @@ $sUrl = "";
 		foreach($arrEncontrados as $oReconocimiento){
 			$sJsonRet = $sJsonRet.'{
 					"clave":'.$oReconocimiento->value.',
-					"descripcion":"'.$oReconocimiento->name.'"
+					"descripcion":"'
+					.str_replace('_', ' ', $oReconocimiento->name).'"
 					},';
 		}
 		//Sobra una coma, eliminarla

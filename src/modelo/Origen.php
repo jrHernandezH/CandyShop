@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 include_once("AccesoDatos.php");
 class Origen{
 private int $idOrigen=0;
-private ?string $nombre;
+private ?string $nombre = " s";
 	
 	public function buscarTodos():array{
 	$oAccesoDatos=new AccesoDatos();
@@ -13,10 +13,10 @@ private ?string $nombre;
 	$arrRet = null;
 	$oOrigen=null;
 		if ($oAccesoDatos->openConnection()){
-			$sQuery = "SELECT Llave_Origen, Nombre
-				FROM Origen
-				ORDER BY Nombre";
-			$arrRS = $oAccesoDatos->ejecutarComando($sQuery, array());
+			$sQuery = "SELECT t1.Llave_Origen, t1.Nombre
+				FROM Origen t1
+				ORDER BY t1.Nombre";
+			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, array());
 			$oAccesoDatos->closeConnection();
 			if ($arrRS){
 				$arrRet = array();
@@ -38,11 +38,14 @@ private ?string $nombre;
 			
 			if ($oAccesoDatos->openConnection()) {
 				$sQuery = "SELECT Nombre FROM Origen WHERE Llave_Origen = ?";
-				$arrRS = $oAccesoDatos->ejecutarComando($sQuery, array($this->getIdOrigen()));
+				$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, array($this->getIdOrigen()));
 				$oAccesoDatos->closeConnection();
 		
 				if ($arrRS && count($arrRS) > 0) {
+					
 					$nombre = $arrRS[0][0];
+					
+
 				}
 			}
 		
@@ -60,8 +63,9 @@ private ?string $nombre;
        $this->nombre = $valor;
     }
     public function getNombre():?string{
-       return $this->nombre;
+       return $this->buscarPorId();
     }
+	
    
 }
 ?>

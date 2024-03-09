@@ -2,28 +2,23 @@
 
 error_reporting(E_ALL);
 
-class AccesoDatos
+class ConexionDB
 {
 
     private $conn = null;
 
     // Método para abrir la conexión con la base de datos
- function openConnection()
+    public function openConnection()
     {
-        $bRet = false;
         try {
             $this->conn = new PDO("mysql:host=localhost;dbname=dulceria", "Dulces", "20242026",  array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"));
-       
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $bRet = true;
         } catch (Exception $e) {
             throw $e;
         }
-        return $bRet;
     }
 
     // Método para cerrar la conexión con la base de datos
-     function closeConnection()
+    public function closeConnection()
     {
         try {
             if ($this->conn != null) {
@@ -35,7 +30,7 @@ class AccesoDatos
     }
 
     // Método para ejecutar INSERT, UPDATE, DELETE
-     function ejecutarComando($query)
+    public function ejecutarComando($query)
     {
         try {
             $this->openConnection();
@@ -60,31 +55,6 @@ class AccesoDatos
             throw $e;
         }
     }
-
-    function ejecutarConsulta($psConsulta, $parrParams){
-		$arrRS = null;
-		$rst = null;
-		$oLinea = null;
-		$sValCol = "";
-		$i=0;
-		$j=0;
-			if ($psConsulta == ""){
-		       throw new Exception("AccesoDatos->ejecutarConsulta: falta indicar la consulta");
-			}
-			if ($this->conn == null){
-				throw new Exception("AccesoDatos->ejecutarConsulta: falta conectar la base");
-			}
-			try{
-				$rst = $this->conn->prepare($psConsulta);
-				$rst->execute($parrParams); 
-			}catch(Exception $e){
-				throw $e;
-			}
-			if ($rst){
-				$arrRS = $rst->fetchAll();
-			}
-			return $arrRS;
-		}
 
     // Método para ejecutar SELECT
     public function ejecutarSelect($query)

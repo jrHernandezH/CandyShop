@@ -8,10 +8,11 @@ include_once("AccesoDatos.php");
 class Producto{
     protected int $idProducto;
     protected ?string $Nombre;
-    protected ?int $Precio;
+    protected ?float $Precio;
     protected ?string $Caracteristicas;
     protected ?string $Fotografia;
-    protected bool $Saborizantes;
+    protected int $Saborizantes;
+	protected int $Existencias;
     protected ?Tipo $tipo;
     protected ?Origen $origen;
 
@@ -23,11 +24,11 @@ class Producto{
 		$arrRet = array();
 		$oProducto=null;
 			if ($oAccesoDatos->openConnection()){
-				$sQuery = "SELECT Llave_Producto, Nombre, Precio, 
-								Caracteristicas, Fotografia, Saborizante, 
-								Tipo, Llave_Origen
-					FROM productos
-					ORDER BY Llave_Producto";
+				$sQuery = "SELECT t1.Llave_Producto, t1.Nombre, t1.Precio, 
+								t1.Caracteristicas, t1.Fotografia, t1.Saborizante, t1.Existencia ,
+								t1.Tipo, t1.Llave_Origen
+					FROM productos t1
+					ORDER BY t1.Llave_Producto";
 				$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, array());
 				
 				$oAccesoDatos->closeConnection();
@@ -40,9 +41,10 @@ class Producto{
 						$oProducto->setCaracteristicas($arrLinea[3]);
 						$oProducto->setFotografia($arrLinea[4]);
 						$oProducto->setSaborizante($arrLinea[5]);
-						$oProducto->setTipo(Tipo::from($arrLinea[6]));
+						$oProducto->setExistencia($arrLinea[6]);
+						$oProducto->setTipo(Tipo::from($arrLinea[7]));
 						$oProducto->setOrigen(new Origen());
-						$oProducto->getOrigen()->setIdOrigen($arrLinea[7]);
+						$oProducto->getOrigen()->setIdOrigen($arrLinea[8]);
 						$arrRet[] = $oProducto;
 					}
 				}
@@ -60,14 +62,14 @@ class Producto{
 			throw new Exception("Producto->buscarTodosPorFiltro: faltan datos");
 		else{
 			if ($oAccesoDatos->openConnection()){
-				$sQuery = "SELECT Llave_Producto, Nombre, Precio, 
-								Caracteristicas, Fotografia, Saborizante, 
-								Tipo, Llave_Origen
-					FROM productos
-					WHERE tipo = 1
-					ORDER BY Nombre";
-				$arrParams = array(":tipo"=>$this->tipo->value);
-				$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, array());
+				$sQuery = "SELECT t1.Llave_Producto, t1.Nombre, t1.Precio, 
+								t1.Caracteristicas, t1.Fotografia, t1.Saborizante,  t1.Existencia ,
+								t1.Tipo, t1.Llave_Origen
+					FROM productos t1
+					WHERE t1.Tipo = :tip
+					ORDER BY t1.Nombre";
+				$arrParams = array(":tip"=>$this->tipo->value);
+				$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
 				$oAccesoDatos->closeConnection();
 				if ($arrRS){
 					foreach($arrRS as $arrLinea){
@@ -78,9 +80,10 @@ class Producto{
 						$oProducto->setCaracteristicas($arrLinea[3]);
 						$oProducto->setFotografia($arrLinea[4]);
 						$oProducto->setSaborizante($arrLinea[5]);
-						$oProducto->setTipo(Tipo::from($arrLinea[6]));
+						$oProducto->setExistencia($arrLinea[6]);
+						$oProducto->setTipo(Tipo::from($arrLinea[7]));
 						$oProducto->setOrigen(new Origen());
-						$oProducto->getOrigen()->setIdOrigen($arrLinea[7]);
+						$oProducto->getOrigen()->setIdOrigen($arrLinea[8]);
 						$arrRet[] = $oProducto;
 					}
 				}
@@ -88,7 +91,47 @@ class Producto{
 		}
 		return $arrRet;
 	}
-	
+	public function buscarTodosPorOrigen():array{
+		$oAccesoDatos=new AccesoDatos();
+		$sQuery="";
+		$arrRS=null;
+		$arrRet = array();
+		$oProducto=null;
+		$arrParams=array();
+			if ($this->origen == null)
+				throw new Exception("Producto->buscarTodosPorFiltro: faltan datos");
+			else{
+				if ($oAccesoDatos->openConnection()){
+					$sQuery = "SELECT t1.Llave_Producto, t1.Nombre, t1.Precio, 
+									t1.Caracteristicas, t1.Fotografia, t1.Saborizante,  t1.Existencia ,
+									t1.Tipo, t1.Llave_Origen
+						FROM productos t1
+						WHERE t1.Llave_Origen = :ori
+						ORDER BY t1.Nombre";
+					$arrParams = array(":ori"=>$this->origen->getIdOrigen());
+					$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
+					$oAccesoDatos->closeConnection();
+					if ($arrRS){
+						foreach($arrRS as $arrLinea){
+							$oProducto = new Producto();
+							$oProducto->setIdProducto($arrLinea[0]);
+							$oProducto->setNombre($arrLinea[1]);
+							$oProducto->setPrecio($arrLinea[2]);
+							$oProducto->setCaracteristicas($arrLinea[3]);
+							$oProducto->setFotografia($arrLinea[4]);
+							$oProducto->setSaborizante($arrLinea[5]);
+							$oProducto->setExistencia($arrLinea[6]);
+							$oProducto->setTipo(Tipo::from($arrLinea[7]));
+							$oProducto->setOrigen(new Origen());
+							$oProducto->getOrigen()->setIdOrigen($arrLinea[8]);
+							$arrRet[] = $oProducto;
+						}
+					}
+				}
+			}
+			return $arrRet;
+		}
+		
 	public function buscar():bool{
 		throw new Exception("Unsupported Operation");
 	}
@@ -117,11 +160,11 @@ class Producto{
      public function getNombre():?string{
         return $this->Nombre;
      }
-     public function setPrecio(int $valor){
-        $this->Nombre = $valor;
+     public function setPrecio(float $valor){
+        $this->Precio = $valor;
      }
-     public function getPrecio():?int{
-        return $this->Nombre;
+     public function getPrecio():?float{
+        return $this->Precio;
      }
      public function setCaracteristicas(string $valor){
         $this->Caracteristicas = $valor;
@@ -136,11 +179,18 @@ class Producto{
         return $this->Fotografia;
      }
  
-     public function setSaborizante(bool $valor){
+     public function setSaborizante(int $valor){
         $this->Saborizantes = $valor;
      }
-     public function getSaborizante():?bool{
+     public function getSaborizante():?int{
         return $this->Saborizantes;
+     }
+
+     public function setExistencia(int $valor){
+        $this->Existencias = $valor;
+     }
+     public function getExistencia():?int{
+        return $this->Existencias;
      }
 
 

@@ -1,5 +1,4 @@
-<body>
-    
+
 
 <?php
 
@@ -82,4 +81,3 @@ $nErr = ErroresAplic::FALTAN_DATOS;
 
 
 ?>
-</body>
